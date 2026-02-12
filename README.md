@@ -2,11 +2,27 @@
 
 ## Problem Statement
 
-[Description of the classification problem to be added]
+This project addresses a critical binary classification challenge in mycology and food safety. The objective is to predict whether a mushroom is edible or poisonous based on its physical characteristics. Given the life-threatening consequences of misclassification, this problem demands high accuracy and reliability. By analyzing features like cap shape, color, odor, and habitat, we build predictive models that can assist in mushroom identification and contribute to foraging safety.
 
 ## Dataset Description
 
-[Details about the dataset including features, samples, and target variable to be added]
+I'm working with the Mushroom Classification dataset from the UCI Machine Learning Repository. This dataset contains descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms from the Agaricus and Lepiota families.
+
+**Key characteristics:**
+- **Total samples:** 8,124 mushroom instances
+- **Features:** 22 categorical attributes describing physical characteristics
+  - Cap attributes: cap_shape, cap_surface, cap_color
+  - Physical indicators: bruises, odor
+  - Gill characteristics: gill_attachment, gill_spacing, gill_size, gill_color
+  - Stalk attributes: stalkshape, stalk_root, stalk_surface_above_ring, stalk_surface_below_ring, stalk_color_above_ring, stalk_color_below_ring
+  - Veil properties: veil_type, veil_color
+  - Ring features: ring_number, ring_type
+  - Spore and habitat: spore_print_color, population, habitat
+- **Target variable:** Mushroom_quality (binary classification)
+  - 'e' = edible (4,208 samples - 51.8%)
+  - 'p' = poisonous (3,916 samples - 48.2%)
+- **Data quality:** All features are categorical, requiring label encoding for model training
+- **Class distribution:** Well-balanced dataset with approximately equal representation
 
 ## Models Used
 
