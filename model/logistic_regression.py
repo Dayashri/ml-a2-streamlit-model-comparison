@@ -23,25 +23,25 @@ def encode_categorical_features(dataframe):
     """Convert all categorical features to numerical using Label Encoding"""
     encoded_df = dataframe.copy()
     label_encoders = {}
-
+   
     for column in encoded_df.columns:
         le = LabelEncoder()
         encoded_df[column] = le.fit_transform(encoded_df[column].astype(str))
         label_encoders[column] = le
-
+   
     return encoded_df, label_encoders
 
 def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ratio=0.25, random_seed=42):
     """Split data into training and testing sets"""
     feature_cols = [col for col in encoded_data.columns if col != target_col]
-
+   
     X = encoded_data[feature_cols]
     y = encoded_data[target_col]
-
+   
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=test_ratio, random_state=random_seed, stratify=y
     )
-
+   
     return X_train, X_test, y_train, y_test
 
 def train_logistic_model(X_train, y_train, max_iterations=1000):
@@ -66,10 +66,10 @@ def save_trained_model(model, filename='logistic_regression_model.pkl'):
     """Save the trained model to disk"""
     model_dir = os.path.dirname(os.path.abspath(__file__))
     model_path = os.path.join(model_dir, filename)
-
+   
     with open(model_path, 'wb') as file:
         pickle.dump(model, file)
-
+   
     print(f"Model saved to: {model_path}")
 
 def main():
@@ -77,36 +77,38 @@ def main():
     print("=" * 60)
     print("LOGISTIC REGRESSION MODEL TRAINING")
     print("=" * 60)
-
+   
     # Load dataset
-    data_path = '../data/mushroom.csv'
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    project_root = os.path.dirname(script_dir)
+    data_path = os.path.join(project_root, 'data', 'mushroom.csv')
     print(f"\nLoading data from: {data_path}")
     mushroom_data = load_mushroom_data(data_path)
     print(f"Dataset shape: {mushroom_data.shape}")
-
+   
     # Encode categorical features
     print("\nEncoding categorical features...")
     encoded_data, encoders = encode_categorical_features(mushroom_data)
-
+   
     # Prepare train/test split
     print("Splitting data into train and test sets...")
     X_train, X_test, y_train, y_test = prepare_train_test_data(encoded_data)
     print(f"Training samples: {len(X_train)}, Testing samples: {len(X_test)}")
-
+   
     # Train model
     print("\nTraining Logistic Regression model...")
     trained_model = train_logistic_model(X_train, y_train)
     print("Training completed!")
-
+   
     # Make predictions
     print("\nGenerating predictions...")
     y_pred = trained_model.predict(X_test)
     y_prob = trained_model.predict_proba(X_test)[:, 1]
-
+   
     # Calculate metrics
     print("\nCalculating performance metrics...")
     performance_metrics = calculate_performance_metrics(y_test, y_pred, y_prob)
-
+   
     # Display results
     print("\n" + "=" * 60)
     print("MODEL PERFORMANCE METRICS")
@@ -114,13 +116,13 @@ def main():
     for metric_name, metric_value in performance_metrics.items():
         print(f"{metric_name:<15}: {metric_value:.4f}")
     print("=" * 60)
-
+   
     # Save model
     print("\nSaving trained model...")
     save_trained_model(trained_model)
-
+   
     print("\n✓ Logistic Regression model training complete!\n")
-
+   
     return performance_metrics
 
 if __name__ == "__main__":
