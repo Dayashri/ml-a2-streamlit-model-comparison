@@ -34,7 +34,7 @@ Comparison table with evaluation metrics for all 6 models:
 | Decision Tree | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
 | kNN | 0.9980 | 1.0000 | 0.9959 | 1.0000 | 0.9980 | 0.9961 |
 | Naive Bayes | 0.9222 | 0.9538 | 0.9028 | 0.9397 | 0.9209 | 0.8451 |
-| Random Forest (Ensemble) | - | - | - | - | - | - |
+| Random Forest (Ensemble) | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
 | XGBoost (Ensemble) | - | - | - | - | - | - |
 
 ## Model Observations
