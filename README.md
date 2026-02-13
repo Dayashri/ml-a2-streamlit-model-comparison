@@ -2,11 +2,11 @@
 
 ## Problem Statement
 
-This project addresses a critical binary classification challenge in mycology and food safety. The objective is to predict whether a mushroom is edible or poisonous based on its physical characteristics. Given the life-threatening consequences of misclassification, this problem demands high accuracy and reliability. By analyzing features like cap shape, color, odor, and habitat, we build predictive models that can assist in mushroom identification and contribute to foraging safety.
+Binary classification to predict whether a mushroom is edible or poisonous based on physical characteristics. Given the life-threatening consequences of misclassification, this problem demands high accuracy models for safe mushroom identification.
 
 ## Dataset Description
 
-I'm working with the Mushroom Classification dataset from the UCI Machine Learning Repository. This dataset contains descriptions of hypothetical samples corresponding to 23 species of gilled mushrooms from the Agaricus and Lepiota families.
+Mushroom Classification dataset from UCI Machine Learning Repository with 8,124 samples from 23 species of gilled mushrooms.
 
 **Key characteristics:**
 - **Total samples:** 8,124 mushroom instances
@@ -21,8 +21,7 @@ I'm working with the Mushroom Classification dataset from the UCI Machine Learni
 - **Target variable:** Mushroom_quality (binary classification)
   - 'e' = edible (4,208 samples - 51.8%)
   - 'p' = poisonous (3,916 samples - 48.2%)
-- **Data quality:** All features are categorical, requiring label encoding for model training
-- **Class distribution:** Well-balanced dataset with approximately equal representation
+- **Preprocessing:** Label encoding for all categorical features
 
 ## Models Used
 
@@ -41,9 +40,9 @@ Comparison table with evaluation metrics for all 6 models:
 
 | ML Model Name | Observation about model performance |
 |---------------|-------------------------------------|
-| Logistic Regression | [Analysis to be added] |
-| Decision Tree | [Analysis to be added] |
-| kNN | [Analysis to be added] |
-| Naive Bayes | [Analysis to be added] |
-| Random Forest (Ensemble) | [Analysis to be added] |
-| XGBoost (Ensemble) | [Analysis to be added] |
+| Logistic Regression | 95.52% accuracy using gradient descent with sigmoid function. L2 regularization handles bias-variance tradeoff. Fast training makes it a solid baseline despite some non-linearity in features. |
+| Decision Tree | Perfect 100% accuracy using information gain criterion. Hunt's algorithm with entropy-based splits achieved perfect classification, though potential overfitting warrants pruning for production use. |
+| kNN | Perfect 100% accuracy with k=5 using Euclidean distance and majority voting. StandardScaler normalization essential for distance-based calculations. Lazy learning approach requires all training data at prediction time. |
+| Naive Bayes | Lowest at 92.22% accuracy - violated conditional independence assumptions due to correlated mushroom features. Maximum likelihood estimation provides fast probabilistic predictions despite theoretical limitations. |
+| Random Forest (Ensemble) | Perfect 100% using 100 trees with bootstrap aggregation and random feature selection. Bagging reduces variance, OOB validation confirms generalization. Parallel training makes it production-ready. |
+| XGBoost (Ensemble) | Perfect 100% through sequential gradient boosting. L1/L2 regularization with learning rate 0.3 prevents overfitting. Each tree corrects residuals, reducing both bias and variance. Top choice for production. |
