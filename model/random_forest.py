@@ -45,10 +45,11 @@ def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ra
     return X_train, X_test, y_train, y_test
 
 def train_random_forest_model(X_train, y_train, n_estimators=100, max_depth=None):
-    """Train Random Forest ensemble classifier"""
+    """Train Random Forest ensemble classifier with OOB error estimation"""
     rf_classifier = RandomForestClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,
+        oob_score=True,
         random_state=42,
         n_jobs=-1
     )
@@ -104,6 +105,7 @@ def main():
     print("\nTraining Random Forest ensemble model...")
     trained_model = train_random_forest_model(X_train, y_train)
     print("Training completed!")
+    print(f"Out-of-Bag Score: {trained_model.oob_score_:.4f}")
    
     # Make predictions
     print("\nGenerating predictions...")
