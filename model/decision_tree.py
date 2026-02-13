@@ -45,8 +45,9 @@ def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ra
     return X_train, X_test, y_train, y_test
 
 def train_decision_tree_model(X_train, y_train, max_depth=None, min_samples_split=2):
-    """Train Decision Tree classifier"""
+    """Train Decision Tree classifier using entropy for information gain"""
     dt_classifier = DecisionTreeClassifier(
+        criterion='entropy',
         max_depth=max_depth,
         min_samples_split=min_samples_split,
         random_state=42
