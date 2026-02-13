@@ -45,11 +45,13 @@ def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ra
     return X_train, X_test, y_train, y_test
 
 def train_xgboost_model(X_train, y_train, n_estimators=100, max_depth=6, learning_rate=0.3):
-    """Train XGBoost ensemble classifier"""
+    """Train XGBoost ensemble classifier with L1 and L2 regularization"""
     xgb_classifier = XGBClassifier(
         n_estimators=n_estimators,
         max_depth=max_depth,
         learning_rate=learning_rate,
+        reg_alpha=0.1,
+        reg_lambda=1.0,
         random_state=42,
         eval_metric='logloss'
     )
