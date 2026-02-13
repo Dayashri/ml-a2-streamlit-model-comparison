@@ -32,7 +32,7 @@ Comparison table with evaluation metrics for all 6 models:
 |---------------|----------|-----|-----------|--------|----|----|
 | Logistic Regression | 0.9552 | 0.9825 | 0.9568 | 0.9499 | 0.9534 | 0.9103 |
 | Decision Tree | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
-| kNN | - | - | - | - | - | - |
+| kNN | 0.9980 | 1.0000 | 0.9959 | 1.0000 | 0.9980 | 0.9961 |
 | Naive Bayes | - | - | - | - | - | - |
 | Random Forest (Ensemble) | - | - | - | - | - | - |
 | XGBoost (Ensemble) | - | - | - | - | - | - |
