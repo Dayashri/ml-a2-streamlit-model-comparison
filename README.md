@@ -31,7 +31,7 @@ Comparison table with evaluation metrics for all 6 models:
 | ML Model Name | Accuracy | AUC | Precision | Recall | F1 | MCC |
 |---------------|----------|-----|-----------|--------|----|----|
 | Logistic Regression | 0.9552 | 0.9825 | 0.9568 | 0.9499 | 0.9534 | 0.9103 |
-| Decision Tree | - | - | - | - | - | - |
+| Decision Tree | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
 | kNN | - | - | - | - | - | - |
 | Naive Bayes | - | - | - | - | - | - |
 | Random Forest (Ensemble) | - | - | - | - | - | - |
