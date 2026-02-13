@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import LabelEncoder
+from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import (
     accuracy_score,
@@ -99,15 +99,22 @@ def main():
     X_train, X_test, y_train, y_test = prepare_train_test_data(encoded_data)
     print(f"Training samples: {len(X_train)}, Testing samples: {len(X_test)}")
    
+    # Apply normalization (essential for distance-based methods)
+    print("\nApplying feature normalization...")
+    scaler = StandardScaler()
+    X_train_scaled = scaler.fit_transform(X_train)
+    X_test_scaled = scaler.transform(X_test)
+    print("Feature scaling completed!")
+   
     # Train model
     print("\nTraining K-Nearest Neighbors model...")
-    trained_model = train_knn_model(X_train, y_train)
+    trained_model = train_knn_model(X_train_scaled, y_train)
     print("Training completed!")
    
     # Make predictions
     print("\nGenerating predictions...")
-    y_pred = trained_model.predict(X_test)
-    y_prob = trained_model.predict_proba(X_test)[:, 1]
+    y_pred = trained_model.predict(X_test_scaled)
+    y_prob = trained_model.predict_proba(X_test_scaled)[:, 1]
    
     # Calculate metrics
     print("\nCalculating performance metrics...")
