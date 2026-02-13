@@ -31,7 +31,7 @@ def encode_categorical_features(dataframe):
    
     return encoded_df, label_encoders
 
-def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ratio=0.25, random_seed=42):
+def prepare_train_test_data(encoded_data, target_col='Mushroom_quality', test_ratio=0.20, random_seed=42):
     """Split data into training and testing sets"""
     feature_cols = [col for col in encoded_data.columns if col != target_col]
    
