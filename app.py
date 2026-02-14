@@ -316,26 +316,26 @@ def main():
                     - **F1-Score:** Harmonic mean of precision and recall
                     - **Support:** Number of samples in each class
                 """)
-                
-                # CSV Export
-                st.markdown("---")
-                st.subheader("Export Predictions")
-                
-                result_df = pd.DataFrame({
-                    'Actual_Class': ['Edible' if y == 0 else 'Poisonous' for y in y_test.values],
-                    'Predicted_Class': ['Edible' if p == 0 else 'Poisonous' for p in predictions],
-                    'Correct': y_test.values == predictions
-                })
-                
-                st.dataframe(result_df.head(10), use_container_width=True)
-                
-                csv_export = result_df.to_csv(index=False)
-                st.download_button(
-                    label="Download Predictions CSV",
-                    data=csv_export,
-                    file_name=f"predictions_{selected_model_name.lower().replace(' ', '_')}.csv",
-                    mime='text/csv'
-                )
+            
+            # CSV Export
+            st.markdown("---")
+            st.subheader("Export Predictions")
+            
+            result_df = pd.DataFrame({
+                'Actual_Class': ['Edible' if y == 0 else 'Poisonous' for y in y_test.values],
+                'Predicted_Class': ['Edible' if p == 0 else 'Poisonous' for p in predictions],
+                'Correct': y_test.values == predictions
+            })
+            
+            st.dataframe(result_df.head(10), use_container_width=True)
+            
+            csv_export = result_df.to_csv(index=False)
+            st.download_button(
+                label="Download Predictions CSV",
+                data=csv_export,
+                file_name=f"predictions_{selected_model_name.lower().replace(' ', '_')}.csv",
+                mime='text/csv'
+            )
             
         except Exception as e:
 
